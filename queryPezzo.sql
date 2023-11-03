@@ -1,5 +1,5 @@
 select p.id, p.titolo, p.codice
-from conerto.concerti c
+from concerto.concerti c
 inner join concerto.concerto_pezzo cp
 on c.id = cp.concerto_id
 inner join concerto.pezzi p
