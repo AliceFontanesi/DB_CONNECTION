@@ -1,3 +1,4 @@
+<?php
 public function pezzi()
     {
         DbManager::initialize("localhost", "concerto", "file.txt");
@@ -21,3 +22,4 @@ public function pezzi()
             die("Errore nella ricerca di tutti i record: " . $e->getMessage());
         }
     }
+?>
