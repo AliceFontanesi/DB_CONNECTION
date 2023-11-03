@@ -10,13 +10,10 @@ public function pezzi()
             $pezzi = $stmt->fetchAll(PDO::FETCH_CLASS, "Pezzo");
 
             if (!empty($pezzi)) {
-                foreach ($pezzi as $pezzo) {
-                    echo "\nDettagli del record:\n";
-                    //Visualizzo i record
-                    //$conc->show();
+                    return $pezzi
                 }
             } else {
-                echo "Nessun record trovato nel database.";
+                    return null;
             }
         } catch (PDOException $e) {
             die("Errore nella ricerca di tutti i record: " . $e->getMessage());
