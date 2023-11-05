@@ -66,3 +66,20 @@ strumento_id int,
 FOREIGN KEY (orchestrale_id) REFERENCES orchestrali(id),
 FOREIGN KEY (strumento_id) REFERENCES strumenti(id)
 );
+
+insert into concerto.pezzi(titolo, codice) values
+	("sinfonia n.40", 254),
+	("per Elisa", 111),
+	("nel blu dipinto di blu", 625),
+	("la primavera", 277 ),
+	("inno alla gioia",365);
+
+insert into concerto.concerti_pezzi (concerto_id, pezzo_id) values
+	(2, 1),
+	(2, 3),
+	(3, 4),
+	(4, 5),
+	(3, 5),
+	(3, 1),
+	(4, 2),
+	(4, 4);
