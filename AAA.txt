@@ -1,3 +1,67 @@
+Ecco un esempio di come implementare le funzioni `do_GET` e `do_POST` in una classe di gestione delle richieste HTTP in Python senza utilizzare un framework:
+
+```python
+
+
+
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse, parse_qs
+
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        parsed_path = urlparse(self.path)
+        query_params = parse_qs(parsed_path.query)
+        
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        
+        response_message = "Hello, World!"
+        
+        # Esempio di utilizzo dei parametri della query string
+        if 'name' in query_params:
+            response_message = f"Hello, {query_params['name'][0]}!"
+        
+        self.wfile.write(response_message.encode())
+
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
+        
+        # Analizza i dati POST
+        # Esempio di stampa dei dati POST ricevuti
+        print("Dati POST ricevuti:", post_data.decode())
+        
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        
+        self.wfile.write("POST ricevuto!".encode())
+
+def run():
+    server_address = ('', 8000)
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    print('Server in esecuzione...')
+    httpd.serve_forever()
+
+if __name__ == '__main__':
+    run()
+```
+
+
+
+
+
+
+
+
+Questo codice crea un server HTTP in locale sulla porta 8000. Quando si riceve una richiesta GET, il server risponde con "Hello, World!" e può anche personalizzare il messaggio se viene passato un parametro "name" nella query string. Quando si riceve una richiesta POST, il server stampa i dati ricevuti e risponde con "POST ricevuto!".
+
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() { 
      sendFetchRequest('http://localhost:8000/products', 'GET', null, null, null) 
